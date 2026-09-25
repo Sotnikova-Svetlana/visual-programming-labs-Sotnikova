@@ -1,4 +1,4 @@
-```
+```mermaid
 flowchart TD
     Start([Старт: Пациент пришел]) --> Check{Есть в базе?}
     Check -- Нет --> Create[Создать карту] --> ChooseDoc
