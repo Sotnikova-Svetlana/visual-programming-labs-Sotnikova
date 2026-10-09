@@ -1,0 +1,147 @@
+[
+    {
+        "id": "5765820ee6d21ca8",
+        "type": "http in",
+        "z": "882724fcf6f40ec6",
+        "name": "",
+        "url": "/api/text",
+        "method": "get",
+        "upload": false,
+        "skipBodyParsing": false,
+        "swaggerDoc": "",
+        "x": 130,
+        "y": 1100,
+        "wires": [
+            [
+                "1ab1d1de42654d40"
+            ]
+        ]
+    },
+    {
+        "id": "1ab1d1de42654d40",
+        "type": "template",
+        "z": "882724fcf6f40ec6",
+        "name": "",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "Привет, это текстовый ответ от Sotnikova!. Нажми Готово.",
+        "output": "str",
+        "x": 320,
+        "y": 1100,
+        "wires": [
+            [
+                "667ca171c9375f76"
+            ]
+        ]
+    },
+    {
+        "id": "667ca171c9375f76",
+        "type": "http response",
+        "z": "882724fcf6f40ec6",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 510,
+        "y": 1100,
+        "wires": []
+    },
+    {
+        "id": "54a5169a058e0f2f",
+        "type": "http in",
+        "z": "882724fcf6f40ec6",
+        "name": "",
+        "url": "/api/info",
+        "method": "get",
+        "upload": false,
+        "skipBodyParsing": false,
+        "swaggerDoc": "",
+        "x": 130,
+        "y": 1160,
+        "wires": [
+            [
+                "e0bd61352229f446"
+            ]
+        ]
+    },
+    {
+        "id": "e0bd61352229f446",
+        "type": "template",
+        "z": "882724fcf6f40ec6",
+        "name": "",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "json",
+        "syntax": "mustache",
+        "template": "{\n    \"student\": \"Sotnikova\",\n    \"status\": \"online\"\n}",
+        "output": "str",
+        "x": 320,
+        "y": 1160,
+        "wires": [
+            [
+                "db3e8c56472d952a"
+            ]
+        ]
+    },
+    {
+        "id": "db3e8c56472d952a",
+        "type": "http response",
+        "z": "882724fcf6f40ec6",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 510,
+        "y": 1160,
+        "wires": []
+    },
+    {
+        "id": "45dcf4d712beb796",
+        "type": "http in",
+        "z": "882724fcf6f40ec6",
+        "name": "",
+        "url": "/api/items",
+        "method": "get",
+        "upload": false,
+        "skipBodyParsing": false,
+        "swaggerDoc": "",
+        "x": 140,
+        "y": 1220,
+        "wires": [
+            [
+                "d7369e147ca61838"
+            ]
+        ]
+    },
+    {
+        "id": "d7369e147ca61838",
+        "type": "function",
+        "z": "882724fcf6f40ec6",
+        "name": "function 3",
+        "func": "if (msg.req.query.id === \"1\") {\n    msg.statusCode = 200;\n    msg.payload = { id: 1, name: \"Ноутбук\", owner: \"Sotnikova\" };\n} else {\n    msg.statusCode = 404;\n    msg.payload = { error: \"Товар не найден (404 Not Found)\" };\n}\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 320,
+        "y": 1220,
+        "wires": [
+            [
+                "cb05f12f82086baa"
+            ]
+        ]
+    },
+    {
+        "id": "cb05f12f82086baa",
+        "type": "http response",
+        "z": "882724fcf6f40ec6",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 510,
+        "y": 1220,
+        "wires": []
+    }
+]

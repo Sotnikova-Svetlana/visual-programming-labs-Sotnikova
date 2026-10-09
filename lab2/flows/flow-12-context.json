@@ -1,0 +1,67 @@
+[
+    {
+        "id": "75de76a75f041764",
+        "type": "inject",
+        "z": "882724fcf6f40ec6",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 80,
+        "y": 1740,
+        "wires": [
+            [
+                "78a367a0f7030bd1"
+            ]
+        ]
+    },
+    {
+        "id": "78a367a0f7030bd1",
+        "type": "function",
+        "z": "882724fcf6f40ec6",
+        "name": "function 7",
+        "func": "// Достаем из долговременной памяти (контекста) наш счетчик\nlet count = flow.get(\"clickCounter\") || 0;\n\n// Увеличиваем на единицу при каждом нажатии\ncount += 1;\n\n// Сохраняем обновленное число обратно в память\nflow.set(\"clickCounter\", count);\n\nmsg.payload = {\n    student: \"Sotnikova\",\n    click_count: count,\n    info: \"Значение хранится в flow context\"\n};\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 300,
+        "y": 1740,
+        "wires": [
+            [
+                "eb48221bc3ba6ec9"
+            ]
+        ]
+    },
+    {
+        "id": "eb48221bc3ba6ec9",
+        "type": "debug",
+        "z": "882724fcf6f40ec6",
+        "name": "debug 10",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 480,
+        "y": 1740,
+        "wires": []
+    }
+]

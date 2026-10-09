@@ -1,0 +1,72 @@
+[
+    {
+        "id": "f7dd67b962cfea75",
+        "type": "inject",
+        "z": "882724fcf6f40ec6",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 120,
+        "y": 920,
+        "wires": [
+            [
+                "4a4d474d96f1041f"
+            ]
+        ]
+    },
+    {
+        "id": "4a4d474d96f1041f",
+        "type": "http request",
+        "z": "882724fcf6f40ec6",
+        "name": "",
+        "method": "GET",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "https://official-joke-api.appspot.com/random_joke",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 290,
+        "y": 920,
+        "wires": [
+            [
+                "f9a87455f30d71aa"
+            ]
+        ]
+    },
+    {
+        "id": "f9a87455f30d71aa",
+        "type": "debug",
+        "z": "882724fcf6f40ec6",
+        "name": "debug 7",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 460,
+        "y": 920,
+        "wires": []
+    }
+]

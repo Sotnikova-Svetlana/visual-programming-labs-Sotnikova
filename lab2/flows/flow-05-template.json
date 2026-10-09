@@ -1,0 +1,66 @@
+[
+    {
+        "id": "96bd7cbaf03c06de",
+        "type": "inject",
+        "z": "882724fcf6f40ec6",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"name\":\"Sotnikova\",\"group\":\"IT-1\",\"score\":100}",
+        "payloadType": "json",
+        "x": 120,
+        "y": 800,
+        "wires": [
+            [
+                "8155cb7890b7c79b"
+            ]
+        ]
+    },
+    {
+        "id": "8155cb7890b7c79b",
+        "type": "template",
+        "z": "882724fcf6f40ec6",
+        "name": "",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "Студент {{payload.name}} из группы {{payload.group}} получил {{payload.score}} баллов за лабу!",
+        "output": "str",
+        "x": 320,
+        "y": 800,
+        "wires": [
+            [
+                "f8526fe11c5838db"
+            ]
+        ]
+    },
+    {
+        "id": "f8526fe11c5838db",
+        "type": "debug",
+        "z": "882724fcf6f40ec6",
+        "name": "debug 6",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 500,
+        "y": 800,
+        "wires": []
+    }
+]

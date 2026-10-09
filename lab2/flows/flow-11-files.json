@@ -1,0 +1,68 @@
+[
+    {
+        "id": "adffa2ae415b1383",
+        "type": "inject",
+        "z": "882724fcf6f40ec6",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 100,
+        "y": 1600,
+        "wires": [
+            [
+                "27f2963056f811f8"
+            ]
+        ]
+    },
+    {
+        "id": "27f2963056f811f8",
+        "type": "function",
+        "z": "882724fcf6f40ec6",
+        "name": "function 6",
+        "func": "msg.payload = \"Студентка Сотникова записала данные в: \" + new Date().toLocaleTimeString() + \"\\n\";\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 300,
+        "y": 1600,
+        "wires": [
+            [
+                "e9f15abbed933ee4"
+            ]
+        ]
+    },
+    {
+        "id": "e9f15abbed933ee4",
+        "type": "file",
+        "z": "882724fcf6f40ec6",
+        "name": "",
+        "filename": "/data/lab2_test.txt",
+        "filenameType": "str",
+        "appendNewline": true,
+        "createDir": false,
+        "overwriteFile": "false",
+        "encoding": "none",
+        "x": 510,
+        "y": 1600,
+        "wires": [
+            []
+        ]
+    }
+]

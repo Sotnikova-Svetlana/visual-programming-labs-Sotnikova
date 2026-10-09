@@ -1,0 +1,92 @@
+[
+    {
+        "id": "e5b55d1272c0116c",
+        "type": "telegram receiver",
+        "z": "882724fcf6f40ec6",
+        "name": "",
+        "bot": "0a770390125660f5",
+        "saveDataDir": "",
+        "filterCommands": false,
+        "hasinput": false,
+        "inputs": 0,
+        "handleallupdates": false,
+        "handleprocessupdates": false,
+        "x": 90,
+        "y": 1460,
+        "wires": [
+            [
+                "29e5cd3af5a0600d"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "29e5cd3af5a0600d",
+        "type": "function",
+        "z": "882724fcf6f40ec6",
+        "name": "function 5",
+        "func": "const chatId = msg.payload.chatId;\nconst text = msg.payload.content;\n\nlet reply = \"\";\n\nif (text === \"/start\") {\n    reply = \"Привет! Я бот студентки Сотниковой для лабы №2.\";\n} else if (text === \"/help\") {\n    reply = \"Я знаю команды: /start, /help. А если напишешь что-то другое — я повторю это эхом!\";\n} else {\n    reply = \"Эхо от Сотниковой: \" + text;\n}\n\nmsg.payload = {\n    chatId: chatId,\n    type: \"message\",\n    content: reply\n};\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 300,
+        "y": 1460,
+        "wires": [
+            [
+                "349b013b2c4e7617"
+            ]
+        ]
+    },
+    {
+        "id": "349b013b2c4e7617",
+        "type": "telegram sender",
+        "z": "882724fcf6f40ec6",
+        "name": "",
+        "bot": "0a770390125660f5",
+        "haserroroutput": false,
+        "outputs": 1,
+        "x": 550,
+        "y": 1460,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "0a770390125660f5",
+        "type": "telegram bot",
+        "botname": "tvl_lab2_Sotnikova_bot",
+        "usernames": "",
+        "chatids": "",
+        "baseapiurl": "",
+        "testenvironment": false,
+        "updatemode": "polling",
+        "pollinterval": 300,
+        "usesocks": false,
+        "sockshost": "",
+        "socksprotocol": "socks5",
+        "socksport": 6667,
+        "socksusername": "anonymous",
+        "sockspassword": "",
+        "bothost": "",
+        "botpath": "",
+        "localbothost": "0.0.0.0",
+        "localbotport": 8443,
+        "publicbotport": 8443,
+        "privatekey": "",
+        "certificate": "",
+        "useselfsignedcertificate": false,
+        "sslterminated": false,
+        "verboselogging": false
+    },
+    {
+        "id": "9b96c1adc94e5d14",
+        "type": "global-config",
+        "env": [],
+        "modules": {
+            "node-red-contrib-telegrambot": "19.0.3"
+        }
+    }
+]
