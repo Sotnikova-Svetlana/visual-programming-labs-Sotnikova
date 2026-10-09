@@ -1,0 +1,145 @@
+[
+    {
+        "id": "2716e3562fb98f2a",
+        "type": "inject",
+        "z": "882724fcf6f40ec6",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "10",
+        "payloadType": "num",
+        "x": 330,
+        "y": 400,
+        "wires": [
+            [
+                "d97fd38efea60298"
+            ]
+        ]
+    },
+    {
+        "id": "83a22a1c395ac3ea",
+        "type": "inject",
+        "z": "882724fcf6f40ec6",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "2",
+        "payloadType": "num",
+        "x": 330,
+        "y": 480,
+        "wires": [
+            [
+                "d97fd38efea60298"
+            ]
+        ]
+    },
+    {
+        "id": "d97fd38efea60298",
+        "type": "function",
+        "z": "882724fcf6f40ec6",
+        "name": "function 2",
+        "func": "if (msg.payload > 5) {\n    msg.payload = \"Много\";\n} else {\n    msg.payload = \"Мало\";\n}\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 500,
+        "y": 440,
+        "wires": [
+            [
+                "3b98241c690e038e"
+            ]
+        ]
+    },
+    {
+        "id": "3b98241c690e038e",
+        "type": "switch",
+        "z": "882724fcf6f40ec6",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "Много",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "Мало",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 690,
+        "y": 440,
+        "wires": [
+            [
+                "5228cad8607567ad"
+            ],
+            [
+                "b0b16fbd087ec4ff"
+            ]
+        ]
+    },
+    {
+        "id": "5228cad8607567ad",
+        "type": "debug",
+        "z": "882724fcf6f40ec6",
+        "name": "debug 3",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 880,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "b0b16fbd087ec4ff",
+        "type": "debug",
+        "z": "882724fcf6f40ec6",
+        "name": "debug 4",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 880,
+        "y": 480,
+        "wires": []
+    }
+]

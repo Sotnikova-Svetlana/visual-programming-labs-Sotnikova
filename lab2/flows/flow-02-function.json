@@ -1,0 +1,68 @@
+[
+    {
+        "id": "61369315ecbabe15",
+        "type": "inject",
+        "z": "882724fcf6f40ec6",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "5",
+        "payloadType": "num",
+        "x": 250,
+        "y": 300,
+        "wires": [
+            [
+                "d7f85ddac52d2be0"
+            ]
+        ]
+    },
+    {
+        "id": "d7f85ddac52d2be0",
+        "type": "function",
+        "z": "882724fcf6f40ec6",
+        "name": "function 1",
+        "func": "const maxCount = msg.payload;\nlet resultsArray = [];\n\nfor (let i = 1; i <= maxCount; i++) {\n    if (i % 2 === 0) {\n        resultsArray.push(i + \" - четное\");\n    } else {\n        resultsArray.push(i + \" - нечетное\");\n    }\n}\n\nconst finalObject = {\n    author: \"Sotnikova\",\n    numbers: resultsArray\n};\n\nmsg.payload = finalObject;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 460,
+        "y": 300,
+        "wires": [
+            [
+                "a1f9c7af8d711d15"
+            ]
+        ]
+    },
+    {
+        "id": "a1f9c7af8d711d15",
+        "type": "debug",
+        "z": "882724fcf6f40ec6",
+        "name": "debug 2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 620,
+        "y": 300,
+        "wires": []
+    }
+]

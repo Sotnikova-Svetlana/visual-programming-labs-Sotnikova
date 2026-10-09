@@ -1,0 +1,89 @@
+[
+    {
+        "id": "939483b4ab9d620b",
+        "type": "inject",
+        "z": "882724fcf6f40ec6",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 200,
+        "y": 660,
+        "wires": [
+            [
+                "c251f04b37c1b6c6"
+            ]
+        ]
+    },
+    {
+        "id": "c251f04b37c1b6c6",
+        "type": "change",
+        "z": "882724fcf6f40ec6",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "Тест Change",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "Sotnikova_topic",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "timestamp",
+                "pt": "msg",
+                "to": "",
+                "tot": "date"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 440,
+        "y": 660,
+        "wires": [
+            [
+                "ffdd920d5b12e9f1"
+            ]
+        ]
+    },
+    {
+        "id": "ffdd920d5b12e9f1",
+        "type": "debug",
+        "z": "882724fcf6f40ec6",
+        "name": "debug 5",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 700,
+        "y": 660,
+        "wires": []
+    }
+]
