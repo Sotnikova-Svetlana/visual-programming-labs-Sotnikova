@@ -1,0 +1,226 @@
+[
+    {
+        "id": "fbc520bde1d1a3b6",
+        "type": "http in",
+        "z": "4c67bd2a373839b7",
+        "name": "POST /login",
+        "url": "/login",
+        "method": "post",
+        "upload": false,
+        "skipBodyParsing": false,
+        "swaggerDoc": "",
+        "x": 150,
+        "y": 160,
+        "wires": [
+            [
+                "a96428d2c9a8ed15"
+            ]
+        ]
+    },
+    {
+        "id": "c97aa8ec1a79ec47",
+        "type": "http response",
+        "z": "4c67bd2a373839b7",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 750,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "a96428d2c9a8ed15",
+        "type": "function",
+        "z": "4c67bd2a373839b7",
+        "name": "function 8",
+        "func": "const { username, password } = msg.payload;\n\nif (username === \"student\" && password === \"lab2pass\") {\n    msg.payload = { username: username, role: \"user\" };\n} else {\n    msg.statusCode = 401;\n    msg.payload = { error: \"Invalid credentials\" };\n}\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 320,
+        "y": 160,
+        "wires": [
+            [
+                "b7a35c27b45025a3"
+            ]
+        ]
+    },
+    {
+        "id": "b7a35c27b45025a3",
+        "type": "jwt sign",
+        "z": "4c67bd2a373839b7",
+        "name": "",
+        "algorithm": "HS256",
+        "mode": "secret",
+        "secret": "lab_secret_key_2026",
+        "secretType": "str",
+        "privateKey": "",
+        "privateKeyType": "bin",
+        "jwkid": "",
+        "jwkidType": "str",
+        "jwkurl": "",
+        "jwkurlType": "str",
+        "expiresIn": 3600,
+        "expiresInType": "num",
+        "audience": "",
+        "audienceType": "str",
+        "issuer": "",
+        "issuerType": "str",
+        "sign": "payload",
+        "signType": "msg",
+        "notBefore": "",
+        "notBeforeType": "num",
+        "output": "payload",
+        "outputType": "msg",
+        "keyid": "",
+        "keyidType": "str",
+        "x": 540,
+        "y": 160,
+        "wires": [
+            [
+                "c97aa8ec1a79ec47"
+            ]
+        ]
+    },
+    {
+        "id": "7dad3bc82bc7f9bc",
+        "type": "http in",
+        "z": "4c67bd2a373839b7",
+        "name": "GET /me",
+        "url": "/me",
+        "method": "get",
+        "upload": false,
+        "skipBodyParsing": false,
+        "swaggerDoc": "",
+        "x": 140,
+        "y": 280,
+        "wires": [
+            [
+                "3504443f7f022149"
+            ]
+        ]
+    },
+    {
+        "id": "3504443f7f022149",
+        "type": "function",
+        "z": "4c67bd2a373839b7",
+        "name": "function 9",
+        "func": "const auth = msg.req.headers.authorization;\n\nif (auth && auth.startsWith(\"Bearer \")) {\n    msg.token = auth.substring(7);\n} else {\n    msg.statusCode = 401;\n    msg.payload = { error: \"Missing token\" };\n}\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 360,
+        "y": 280,
+        "wires": [
+            [
+                "894431da0c64d119"
+            ]
+        ]
+    },
+    {
+        "id": "6e3a9a0b06f9abcc",
+        "type": "jwt verify",
+        "z": "4c67bd2a373839b7",
+        "name": "",
+        "algorithms": "",
+        "mode": "secret",
+        "secret": "lab_secret_key_2026",
+        "secretType": "str",
+        "publicKey": "",
+        "publicKeyType": "bin",
+        "autoDetectjwkid": "false",
+        "autoDetectjwkidType": "bool",
+        "jwkid": "",
+        "jwkidType": "str",
+        "jwkurl": "",
+        "jwkurlType": "str",
+        "ignoreExpiration": "false",
+        "ignoreExpirationType": "bool",
+        "ignoreNotBefore": "false",
+        "ignoreNotBeforeType": "bool",
+        "audience": "",
+        "audienceType": "str",
+        "issuer": "",
+        "issuerType": "str",
+        "token": "token",
+        "maxAge": "",
+        "maxAgeType": "num",
+        "constraints": [],
+        "output": "payload",
+        "outputType": "msg",
+        "x": 760,
+        "y": 340,
+        "wires": [
+            [
+                "3353ad85e07b9f1c"
+            ]
+        ]
+    },
+    {
+        "id": "3353ad85e07b9f1c",
+        "type": "http response",
+        "z": "4c67bd2a373839b7",
+        "name": "",
+        "statusCode": "200",
+        "headers": {},
+        "x": 960,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "894431da0c64d119",
+        "type": "switch",
+        "z": "4c67bd2a373839b7",
+        "name": "",
+        "property": "statusCode",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "401",
+                "vt": "str"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 550,
+        "y": 280,
+        "wires": [
+            [
+                "268efe31bc5cd0e3"
+            ],
+            [
+                "6e3a9a0b06f9abcc"
+            ]
+        ]
+    },
+    {
+        "id": "268efe31bc5cd0e3",
+        "type": "http response",
+        "z": "4c67bd2a373839b7",
+        "name": "",
+        "statusCode": "401",
+        "headers": {},
+        "x": 760,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "649facab6583423a",
+        "type": "global-config",
+        "env": [],
+        "modules": {
+            "node-red-contrib-jsonwebtoken": "1.0.7"
+        }
+    }
+]
