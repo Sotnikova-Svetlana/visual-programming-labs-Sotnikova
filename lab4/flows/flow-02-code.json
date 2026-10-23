@@ -1,0 +1,77 @@
+{
+  "name": "My workflow 2",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -496,
+        -16
+      ],
+      "id": "2bf15f18-d9ed-46bd-805d-cd62763d3ca2",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "jsCode": "const maxCount = 5;\nlet resultsArray = [];\n\nfor (let i = 1; i <= maxCount; i++) {\n    if (i % 2 === 0) {\n        resultsArray.push(i + \" - четное\");\n    } else {\n        resultsArray.push(i + \" - нечетное\");\n    }\n}\n\nconst finalObject = {\n    author: \"Tachguliev\",\n    numbers: resultsArray\n};\n\nreturn [{ json: { payload: finalObject } }];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -240,
+        -16
+      ],
+      "id": "0ec73980-86ff-4922-aa9b-ad7e47c4deb0",
+      "name": "Code in JavaScript"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        -48,
+        -16
+      ],
+      "id": "e9fa119c-7807-4a3a-a61a-f6d781296b44",
+      "name": "No Operation, do nothing"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript": {
+      "main": [
+        [
+          {
+            "node": "No Operation, do nothing",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "17a3bf27-1330-4943-ba15-4c9b9728c7e1",
+  "meta": {
+    "instanceId": "8ba1f22deb75f5c64d7e6c8ee5e2dc8acab1cc370ebfdbef9ecfbcf0fa1c148d"
+  },
+  "nodeGroups": [],
+  "id": "n2iPZbQ7SPMoHCEJ",
+  "tags": []
+}
