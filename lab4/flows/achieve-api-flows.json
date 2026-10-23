@@ -1,0 +1,153 @@
+{
+  "name": "My workflow 9",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "notes",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.2,
+      "position": [
+        0,
+        0
+      ],
+      "id": "be0823ff-4b21-4153-a913-5e0e8d86a34a",
+      "name": "Webhook",
+      "webhookId": "a29923d6-b015-4370-9e1e-8f85cc67cde1"
+    },
+    {
+      "parameters": {
+        "jsCode": "let incomingText = $input.first().json.body.text;\nlet staticData = $getWorkflowStaticData(\"global\");\n\nlet notes = staticData.sotnikova_notes || []; \nnotes.push(incomingText);\nstaticData.sotnikova_notes = notes;           \n\nreturn [{ json: { status: \"saved\", notes: notes } }];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        224,
+        0
+      ],
+      "id": "c561a68e-5bb2-452d-9ea8-3537e091ff25",
+      "name": "Code in JavaScript"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ $json }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        448,
+        0
+      ],
+      "id": "f6821942-8f24-486c-b582-09a201951a1c",
+      "name": "Respond to Webhook"
+    },
+    {
+      "parameters": {
+        "path": "notes",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.2,
+      "position": [
+        0,
+        176
+      ],
+      "id": "7f30f213-38c2-4c3f-bd25-419e429f25ad",
+      "name": "Webhook1",
+      "webhookId": "158f25ff-f61c-4c2f-8c87-22b57da5843e"
+    },
+    {
+      "parameters": {
+        "jsCode": "let staticData = $getWorkflowStaticData(\"global\");\nlet notes = staticData.sotnikova_notes || []; \n\nreturn [{ json: { my_notes: notes } }];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        224,
+        176
+      ],
+      "id": "eae6b3af-3f14-4702-8b50-3dbdc958e7c6",
+      "name": "Code in JavaScript1"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ $json }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        448,
+        176
+      ],
+      "id": "59d855bd-d392-4828-8f69-48d551957d1c",
+      "name": "Respond to Webhook1"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook1": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript1": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "766d70ac-aa35-43c3-bb56-7f4bcfed2a8a",
+  "meta": {
+    "instanceId": "ae65e750ae07269c3f8aaf9edeba52c04e0ef3b918ab49e8328277187ade9978"
+  },
+  "nodeGroups": [],
+  "id": "uW9JVV7fMpK2IrcR",
+  "tags": []
+}
