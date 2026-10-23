@@ -1,0 +1,114 @@
+{
+  "name": "My workflow 4",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -608,
+        -144
+      ],
+      "id": "fb097580-dc59-472f-ba2b-f2271eb87e9a",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "da381b3c-5253-4200-85df-7d0c43da1219",
+              "name": "topic",
+              "value": "lab4/Tachguliev/test",
+              "type": "string"
+            },
+            {
+              "id": "667ba101-7e03-4c05-919c-0b8b33038b24",
+              "name": " timestamp",
+              "value": "={{ $now }}",
+              "type": "string"
+            },
+            {
+              "id": "9421b7a1-0f69-4a65-8a02-ebb0f40c5241",
+              "name": "payload",
+              "value": "Tachguliev",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.5,
+      "position": [
+        -400,
+        -144
+      ],
+      "id": "4eb96d8e-5c01-43cf-901a-c37ba59d4c36",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "jsCode": "return $input.all();"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -208,
+        -144
+      ],
+      "id": "ee0e563a-bbd3-497b-8bd0-3a311d3e435c",
+      "name": "Code in JavaScript"
+    }
+  ],
+  "pinData": {
+    "Edit Fields": [
+      {
+        "json": {
+          "topic": "lab4/Tachguliev/test",
+          " timestamp": "2026-10-16T03:35:39.500-04:00",
+          "payload": "Tachguliev"
+        },
+        "pairedItem": {
+          "item": 0
+        }
+      }
+    ]
+  },
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "5f95aeeb-f3ae-4476-862c-d4973395001a",
+  "meta": {
+    "instanceId": "8ba1f22deb75f5c64d7e6c8ee5e2dc8acab1cc370ebfdbef9ecfbcf0fa1c148d"
+  },
+  "nodeGroups": [],
+  "id": "krhBVG77028Jllrn",
+  "tags": []
+}

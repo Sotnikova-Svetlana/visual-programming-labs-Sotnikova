@@ -1,0 +1,64 @@
+{
+  "name": "My workflow 6",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "minutes",
+              "minutesInterval": 1
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.4,
+      "position": [
+        0,
+        0
+      ],
+      "id": "c3a8029e-0a41-41e7-809f-606a11ebece9",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "jsCode": "return [{ json: { time: new Date().toISOString(), author: \"Tachguliev\" } }];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        224,
+        0
+      ],
+      "id": "a937bca7-338e-46b0-8c21-f2ca8fff299c",
+      "name": "Code in JavaScript"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "89c9970e-521b-44f7-805c-abb50104c6f1",
+  "meta": {
+    "instanceId": "8ba1f22deb75f5c64d7e6c8ee5e2dc8acab1cc370ebfdbef9ecfbcf0fa1c148d"
+  },
+  "nodeGroups": [],
+  "id": "N9EIyVKTF7In9qAF",
+  "tags": []
+}
